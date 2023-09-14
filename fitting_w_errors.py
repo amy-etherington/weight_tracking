@@ -7,6 +7,7 @@ from scipy.optimize import curve_fit
 from matplotlib import rcParams
 rcParams['font.family'] = 'serif'
 
+##name functions and variables so easy to understand
 def f(x, m, c):
     return m*x + c
 
@@ -19,14 +20,16 @@ def plot_ci_manual(t, s_err, n, x, x2, y2, ax=None):
 
     return ax
 
-
-weights=[]
+##seperate file with function for loading data, make sure can load data from different sources
+##file can also have function for processing data
 weights = pd.read_csv("data\weight_data.csv")
 weights = weights.drop([0, 1, 2, 11, 20]) ##dropping repeated measurements
-weights["datetime"] = pd.to_datetime(weights["Time of Measurement"])
-weights["Date"]=weights["datetime"].dt.date
-weights["Time"]=weights["datetime"].dt.strftime('%H:%m:%S')
-weights["Day"]=np.arange(0,len(weights["Date"]))
+weights["datetime"] = pd.to_datetime(weights["Time of Measurement"]) ## relying on data being in particular format
+
+
+weights["Date"] = weights["datetime"].dt.date
+weights["Time"] = weights["datetime"].dt.strftime('%H:%m:%S')
+weights["Day"] = np.arange(0,len(weights["Date"]))
 weight_labels = weights
 print(weight_labels["Weight(kg)"])
 
