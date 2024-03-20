@@ -10,7 +10,7 @@ rcParams['font.family'] = 'serif'
 ##name functions and variables so easy to understand
 def f(x, m, c):
     return m*x + c
-
+# hello
 def plot_ci_manual(t, s_err, n, x, x2, y2, ax=None):
     if ax is None:
         ax = plt.gca()
